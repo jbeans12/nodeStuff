@@ -1,7 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-inquirer
+
+const html = createHTML(
+    inquirer
   .prompt([
     {
       type: 'input',
@@ -19,10 +21,13 @@ inquirer
         message: 'What is your LinkedIn profile name?',
     },
   ])
-  .then((data) => {
-    const filename = `${data.name.toLowerCase().split(' ').join('')}.json`;
+)
 
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-      err ? console.log(err) : console.log('Success!')
-    );
+
+  .then((data) => {
+    
+
+    fs.writeFile('index.html', html, function (err) {
+        if (err) console.log(err)
+      })
   });
